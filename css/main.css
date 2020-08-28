@@ -94,7 +94,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Alata', sans-serif;
 }
 
-nav a {
+nav a, footer p {
   font-family: 'Comfortaa', cursive;
 }
 
@@ -118,6 +118,10 @@ nav a {
   z-index: 2001;
 }
 
+
+footer p {
+  font-size: 1.1em;
+}
 @media screen and (min-width: 768px) {
   .fullForm {
     width: 80%;
