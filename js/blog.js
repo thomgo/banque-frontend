@@ -40,7 +40,7 @@ httpRequest.onreadystatechange = function() {
   if (httpRequest.readyState === XMLHttpRequest.DONE) {
     if (httpRequest.status === 200) {
       // Turn the response into an array of JSON objects
-      articles = JSON.parse(httpRequest.responseText);
+      let articles = JSON.parse(httpRequest.responseText);
       showArticles(articles);
     }
     else {
