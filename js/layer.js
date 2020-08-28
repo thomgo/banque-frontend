@@ -9,6 +9,8 @@ function addLayer() {
 function closeLayer() {
   document.querySelector(".layer").remove();
   document.querySelector(".messageBox").remove();
+  // Store in session that user has seen the message
+  sessionStorage.setItem("informed", true);
 }
 
 // Function to create a button to close the message box in the layer
@@ -46,19 +48,22 @@ function addMessageBox(text) {
   messageBox.style.top = "10vh";
 }
 
-// Add the transparent layer on page loading
-addLayer();
-// Start the AJAX request
-httpRequest = new XMLHttpRequest();
-httpRequest.onreadystatechange = function() {
-  if (httpRequest.readyState === XMLHttpRequest.DONE) {
-    if (httpRequest.status === 200) {
-      addMessageBox(httpRequest.responseText);
+// If the user has not seen the message yet
+if(!sessionStorage.getItem("informed")) {
+  // Add the transparent layer on page loading
+  addLayer();
+  // Start the AJAX request
+  httpRequest = new XMLHttpRequest();
+  httpRequest.onreadystatechange = function() {
+    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+      if (httpRequest.status === 200) {
+        addMessageBox(httpRequest.responseText);
+      }
+      else {
+        addMessageBox("Une erreur est survenue, fermez ce message sans en tenir-compte");
+      }
     }
-    else {
-      addMessageBox("Une erreur est survenue, fermez ce message sans en tenir-compte");
-    }
-  }
-};
-httpRequest.open('GET', 'data/info.txt', true);
-httpRequest.send();
+  };
+  httpRequest.open('GET', 'data/info.txt', true);
+  httpRequest.send();
+}
