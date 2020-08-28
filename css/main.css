@@ -118,6 +118,18 @@ nav a {
   z-index: 2001;
 }
 
+@media screen and (min-width: 768px) {
+  .fullForm {
+    width: 80%;
+    margin: auto;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .fullForm {
+    width: 70%;
+  }
+}
 /* ==========================================================================
    Helper classes
    ========================================================================== */
